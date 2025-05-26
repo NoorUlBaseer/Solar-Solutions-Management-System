@@ -1,0 +1,278 @@
+@baseUrl = http://localhost:5000/api/sellers
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTVhZmMyMTc4NjE1NjU3MDg3MGZlMSIsImlhdCI6MTczMzY2ODk2NCwiZXhwIjoxNzMzNjcyNTY0fQ.L71lO3e6mN7Lm_cssJ5decU29EXpcVtlWOO4JUFVxws
+### Register a new seller
+POST http://localhost:5000/api/sellers/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "securepassword123"
+}
+
+###
+
+### Login as a seller
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "seller1@example.com",
+  "password": "sellerpassword"
+}
+
+### Login as a seller
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "noor@mail.com",
+  "password": "sellerpassword"
+}
+
+### querytest
+POST  http://localhost:5000/api/sellers/support/query
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "query": "I have a question about my order",
+  "context": 
+  {
+    "sellerName": "John Doe",
+    "companyName": "SolarX",
+    "productCount": 20,
+    "orderCount": 100
+  }
+}
+
+### Request a survey
+POST http://localhost:5000/api/sellers/request-survey
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{}
+
+###
+
+### Get verification status
+GET http://localhost:5000/api/sellers/verification-status
+Authorization: Bearer {{token}}
+
+
+### Get orders
+GET http://localhost:5000/api/sellers/orders
+Authorization: Bearer {{token}}
+
+###
+
+### Add a service
+POST http://localhost:5000/api/sellers/services
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "service": "Express Delivery"
+}
+
+###
+
+###get seller dashboard 
+GET http://localhost:5000/api/sellers/dashboard
+Authorization: Bearer {{token}}
+
+
+
+### Add a product
+POST http://localhost:5000/api/sellers/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Product A",
+  "description": "Description of Product A",
+  "price": 100.0
+}
+
+###
+
+### Update a product
+PUT http://localhost:5000/api/sellers/products/6752f132ed58aabe8238f4a3
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Updated Product A",
+  "price": 120.0
+}
+
+###
+
+### Remove a product
+DELETE http://localhost:5000/api/sellers/products/
+Authorization: Bearer {{token}}
+
+###
+
+### Get inventory
+GET http://localhost:5000/api/sellers/inventory
+Authorization: Bearer {{token}}
+
+###
+
+### Create a quote
+POST http://localhost:5000/api/sellers/quotes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "details": "Quote details",
+  "price": 500.0
+}
+
+###
+
+### Get analytics
+GET http://localhost:5000/api/sellers/analytics
+Authorization: Bearer {{token}}
+
+###
+
+### Create a promotion
+POST http://localhost:5000/api/sellers/promotions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "promotion": "10% Discount"
+}
+
+###
+
+
+###
+
+### Generate an invoice
+POST http://localhost:5000/api/sellers/invoices
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "orderId": "6753148ce2b9b73ce12dc30e"
+}
+
+###
+
+### Verify a seller
+PUT http://localhost:5000/api/sellers/verify/6753148be2b9b73ce12dc2fc
+Content-Type: application/json
+
+{}
+
+
+
+### Add Warehouse
+POST http://localhost:5000/api/sellers/warehouses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Central Warehouse",
+  "location": {
+    "address": "123 Storage Lane",
+    "city": "Logistics City",
+    "state": "Inventory State",
+    "zipCode": "12345",
+    "country": "Seller Land",
+    "coordinates": {
+      "lat": 40.7128,
+      "lng": -74.0060
+    }
+  },
+  "capacity": {
+    "total": 10000,
+    "available": 7500
+  },
+  "inventory": [
+    {
+      "product": "6752f132ed58aabe8238f4a3",
+      "quantity": 500
+    }
+  ]
+}
+### Get All Warehouses
+GET http://localhost:5000/api/sellers/warehouses
+Authorization: Bearer {{token}}
+
+### Get Warehouse by ID
+GET http://localhost:5000/api/sellers/warehouses/675307bf895712631e944f69
+Authorization: Bearer {{token}}
+
+### Update Warehouse
+PUT http://localhost:5000/api/sellers/warehouses/60d5ecb54b5f1234567890ef
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Updated Central Warehouse",
+  "location": {
+    "address": "456 Logistics Road",
+    "city": "Shipping City",
+    "state": "Distribution State",
+    "zipCode": "54321",
+    "country": "Seller Country",
+    "coordinates": {
+      "lat": 41.8781,
+      "lng": -87.6298
+    }
+  },
+  "capacity": {
+    "total": 15000,
+    "available": 10000
+  }
+}
+
+### Get Warehouses by Seller
+GET http://localhost:5000/api/sellers/warehouses/seller/6752f02bed58aabe8238f498
+Authorization: Bearer {{token}}
+
+### Delete Warehouse
+DELETE http://localhost:5000/api/sellers/warehouses/60d5ecb54b5f1234567890ef
+Authorization: Bearer {{token}}
+
+
+### Test: Get all seller orders (GET /orders)
+
+GET http://localhost:5000/api/sellers/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+###
+
+### Test: Get a specific seller order by ID (GET /orders/:id)
+
+GET http://localhost:5000/api/sellers/orders/ORDER_ID_HERE
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+###
+
+### Test: Update order status by seller (PUT /orders/:id/status)
+
+PUT http://localhost:5000/api/sellers/orders/ORDER_ID_HERE/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "status": "completed"
+}
+
+###
+
+### Test: Get order analytics for the seller (GET /order-analytics)
+
+GET http://localhost:5000/api/sellers/order-analytics
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+###
